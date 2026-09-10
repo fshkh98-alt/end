@@ -4,6 +4,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import type { Locale } from "@/i18n/config";
 import ar from "@/i18n/ar.json";
 import en from "@/i18n/en.json";
+import type { Achievement } from "@prisma/client";
 
 function formatDate(date: Date, locale: Locale) {
   return new Intl.DateTimeFormat(locale === "ar" ? "ar" : "en", {
@@ -28,7 +29,7 @@ export default async function AchievementsPage({
     <div className="space-y-8">
       <h1 className="text-3xl font-semibold">{t.nav.achievements}</h1>
       <div className="grid gap-4 sm:grid-cols-2">
-        {items.map((a) => (
+        {items.map((a: Achievement) => (
           <Card key={a.id}>
             <h2 className="text-lg font-medium">{a.title}</h2>
             <p className="mt-1 text-xs text-text-muted">{formatDate(a.date, locale)}</p>
