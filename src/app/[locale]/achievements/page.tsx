@@ -13,6 +13,17 @@ function formatDate(date: Date, locale: Locale) {
   }).format(date);
 }
 
+interface AchievementItem {
+  id: string;
+  title: string;
+  description: string | null;
+  date: Date;
+  category: string | null;
+  imageUrl: string | null;
+  url: string | null;
+  createdAt: Date;
+}
+
 export default async function AchievementsPage({
   params,
 }: {
@@ -28,7 +39,7 @@ export default async function AchievementsPage({
     <div className="space-y-8">
       <h1 className="text-3xl font-semibold">{t.nav.achievements}</h1>
       <div className="grid gap-4 sm:grid-cols-2">
-        {items.map((a) => (
+        {items.map((a: AchievementItem) => (
           <Card key={a.id}>
             <h2 className="text-lg font-medium">{a.title}</h2>
             <p className="mt-1 text-xs text-text-muted">{formatDate(a.date, locale)}</p>
